@@ -1,8 +1,9 @@
 package meli.challenge.quasar.controllers;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import meli.challenge.quasar.domain.dtos.request.SatelliteData;
+import meli.challenge.quasar.domain.dtos.response.LocationDto;
+import meli.challenge.quasar.domain.exceptions.UnprocessableEntityException;
 import meli.challenge.quasar.domain.services.QuasarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,18 +14,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@AllArgsConstructor
-@NoArgsConstructor
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 @RestController
 @RequestMapping("/topsecret")
 public class QuasarController {
 
-    @Autowired
-    QuasarService quasarService;
+    private final QuasarService quasarService;
 
     @PostMapping
-    private ResponseEntity<Object> saveSecret(@Validated @RequestBody SatelliteData satelliteData){
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(quasarService.businessProcessor(satelliteData));
+    public ResponseEntity<LocationDto> saveSecret(@Validated @RequestBody SatelliteData satelliteData){
+        try {
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(quasarService.businessProcessor(satelliteData));
+        } catch (RuntimeException e){
+            throw new UnprocessableEntityException();
+        }
     }
 }

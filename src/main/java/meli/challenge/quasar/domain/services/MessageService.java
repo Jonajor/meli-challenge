@@ -1,8 +1,8 @@
 package meli.challenge.quasar.domain.services;
 
-import meli.challenge.quasar.domain.dtos.request.Satellite;
+import meli.challenge.quasar.domain.dtos.request.SatelliteDto;
 import meli.challenge.quasar.domain.dtos.request.SatelliteData;
-import meli.challenge.quasar.domain.exceptions.MessageException;
+import meli.challenge.quasar.domain.exceptions.UnprocessableEntityException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,24 +14,24 @@ import java.util.stream.Stream;
 public class MessageService {
 
     public String getMessage(SatelliteData satelliteData){
-        if (satelliteData.getSatellites().size() <= 2){
-            throw new MessageException("Número de mensagens insuficientes");
+        if (satelliteData.getSatelliteDtos().size() <= 2){
+            throw new UnprocessableEntityException();
         }
 
-        var messageList = satelliteData.getSatellites()
+        var messageList = satelliteData.getSatelliteDtos()
                 .stream()
-                .map(Satellite::getMessage)
+                .map(SatelliteDto::getMessage)
                 .filter(m -> m != null && !m.isEmpty())
                 .collect(Collectors.toList());
 
         if (messageList.stream().allMatch(m -> m.isEmpty())){
-            throw new MessageException("Mensagem nao recebidas");
+            throw new UnprocessableEntityException();
         }
 
         return filterWords(messageList);
     }
 
-    private String filterWords(List<List<String>> messageList) {
+    public String filterWords(List<List<String>> messageList) {
         List<String> wordList = new ArrayList<>();
         for (List<String> msg: messageList){
             wordList = Stream.concat(wordList.stream(), msg.stream())
