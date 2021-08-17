@@ -1,0 +1,73 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Meli-Challenge",
+		"_postman_id": "7ec097a8-d5c2-3703-245b-a2bfe280e3e6",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "meli",
+			"request": {
+				"url": "https://quasar-war-meli.herokuapp.com/topsecret",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"satellites\": [\n\t\t{\n\t\t\t\"name\": \"kenobi\",\n\t\t\t\"distance\": 721.11,\n\t\t\t\"message\": [\"this\", \"\", \"\", \"secret\", \"\"],\n\t\t\t\"position\":{\n\t\t\t\t\"x\": 262.09,\n\t\t\t\t\"y\": 3535.09\n\t\t\t}\n\t\t},\n\t\t{\n\t\t\t\"name\": \"skywalker\",\n\t\t\t\"distance\": 300,\n\t\t\t\"message\": [\"\", \"is\", \"\", \"\", \"message\"],\n\t\t\t\"position\":{\n\t\t\t\t\"x\": 262.09,\n\t\t\t\t\"y\": 3535.09\n\t\t\t}\t\t\t\n\t\t},\n\t\t{\n\t\t\t\"name\": \"sato\",\n\t\t\t\"distance\": 412.31,\n\t\t\t\"message\": [\"this\", \"\", \"a\", \"\", \"\"]\t\t\t\n\t\t}\n\t\t]\n\t\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://quasar-war-meli.herokuapp.com/topsecret_split/kenobi",
+			"request": {
+				"url": "https://quasar-war-meli.herokuapp.com/topsecret_split/kenobi",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"distance\": 721.11,\n\t\"message\":  [\"this\", \"\", \"\", \"secret\", \"\"]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://quasar-war-meli.herokuapp.com/topsecret_split",
+			"request": {
+				"url": "https://quasar-war-meli.herokuapp.com/topsecret_split",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://quasar-war-meli.herokuapp.com/topsecret_split/kenobi",
+			"request": {
+				"url": "https://quasar-war-meli.herokuapp.com/topsecret_split/kenobi",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
