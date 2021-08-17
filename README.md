@@ -6,7 +6,7 @@
 For building and running the application you need:
 
 - [Maven](https://maven.apache.org/)
-- [MongoDB](https://www.h2database.com/html/main.html)
+- [H2](https://www.h2database.com/html/main.html)
 - [Docker](https://www.docker.com/)
 
 ## Executing requests
